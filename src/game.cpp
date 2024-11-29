@@ -26,6 +26,7 @@ void Game::start()
     {
         if (winner == Player::PLAYER || winner == Player::AI) 
         {
+            ::ShowWindow(::GetConsoleWindow(), SW_SHOW);
             break;
         }
 

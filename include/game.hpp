@@ -8,6 +8,8 @@
 #include "ai.hpp"
 #include "spdlog/spdlog.h"
 
+#include "Windows.h"
+
 class Game
 {
 public:
