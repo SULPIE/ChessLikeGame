@@ -6,7 +6,7 @@ void Game::start()
 {
     srand(time(0));
 
-    sf::RenderWindow window(sf::VideoMode(WINDOW_SIZE, WINDOW_SIZE), "ChessLike Game", sf::Style::Close);
+    sf::RenderWindow window(sf::VideoMode(WINDOW_SIZE, WINDOW_SIZE), "ChessLike Game", sf::Style::Close, sf::ContextSettings(0, 0, 10));
 
     chessBoard = std::make_shared<ChessBoard>();
     ai = std::make_unique<AI>(chessBoard);
@@ -24,6 +24,11 @@ void Game::start()
 
     while (window.isOpen()) 
     {
+        if (winner == Player::PLAYER || winner == Player::AI) 
+        {
+            break;
+        }
+
         on_update(window);
     }
 }
@@ -109,15 +114,15 @@ void Game::on_update(sf::RenderWindow& window)
         piece.draw(window);
     }
 
-    /*if (chessBoard->isPlayerWinner()) {
-        spdlog::info("Player wins");
-        return;
+    if (chessBoard->isPlayerWinner()) {
+        spdlog::info("The end!!!!!!! Player wins this game");
+        winner = Player::PLAYER;
     }
-
+     
     if (chessBoard->isAIWinner()) {
-        spdlog::info("ai wins");
-        return;
-    }*/
+        spdlog::info("The end!!!!!!! AI wins this game");
+        winner = Player::AI;
+    }
 
     window.display();
 }

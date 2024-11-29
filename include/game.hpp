@@ -31,4 +31,6 @@ private:
 	bool pieceSelected = false;
 	int selectedX = -1;
 	int	selectedY = -1;
+	
+	Player winner = Player::NONE;
 };
